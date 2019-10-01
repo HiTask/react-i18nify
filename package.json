@@ -1,6 +1,6 @@
 {
   "name": "@hitask/react-i18nify",
-  "version": "1.11.18",
+  "version": "1.11.19",
   "description": "Simple i18n translation and localization components and helpers for React applications.",
   "main": "./build/index.js",
   "scripts": {
