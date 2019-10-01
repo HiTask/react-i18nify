@@ -45,8 +45,6 @@
     "react": "^16.0.0"
   },
   "dependencies": {
-    "intl": "^1.2",
-    "moment": "^2.22.1",
     "prop-types": "^15.6.1"
   },
   "devDependencies": {

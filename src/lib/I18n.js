@@ -1,9 +1,6 @@
 /* eslint global-require: "off" */
 /* eslint no-console: "off" */
 
-import IntlPolyfill from 'intl';
-import moment from 'moment';
-import 'moment/min/locales';
 import BaseComponent from './Base';
 
 export default {
@@ -72,10 +69,6 @@ export default {
     return this._translate(key, replacements);
   },
 
-  l(value, options) {
-    return this._localize(value, options);
-  },
-
   _replace(translation, replacements) {
     if (typeof translation === 'string') {
       let result = translation;
@@ -109,29 +102,6 @@ export default {
       return this._handleMissingTranslation(key, replacements);
     }
     return this._replace(translation, replacements);
-  },
-
-  _localize(value, options = {}) {
-    if (options.dateFormat) {
-      return moment(
-        value,
-        options.parseFormat,
-        this._locale,
-        Boolean(options.strictParse),
-      ).format(this.t(options.dateFormat));
-    }
-    if (typeof value === 'number') {
-      if (global.Intl) {
-        if (!(Intl.NumberFormat &&
-          Intl.NumberFormat.supportedLocalesOf(this._locale).length === 1)) {
-          Intl.NumberFormat = IntlPolyfill.NumberFormat;
-        }
-      } else {
-        global.Intl = IntlPolyfill;
-      }
-      return new Intl.NumberFormat(this._locale, options).format(value);
-    }
-    return value;
   },
 
   _fetchTranslation(translations, key, count = null) {
